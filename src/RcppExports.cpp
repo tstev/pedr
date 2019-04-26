@@ -5,19 +5,20 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP _pedr_rcpp_hello_world() {
+// frenum_miss
+SEXP frenum_miss(SEXP id);
+RcppExport SEXP _pedr_frenum_miss(SEXP idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    Rcpp::traits::input_parameter< SEXP >::type id(idSEXP);
+    rcpp_result_gen = Rcpp::wrap(frenum_miss(id));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_pedr_rcpp_hello_world", (DL_FUNC) &_pedr_rcpp_hello_world, 0},
+    {"_pedr_frenum_miss", (DL_FUNC) &_pedr_frenum_miss, 1},
     {NULL, NULL, 0}
 };
 

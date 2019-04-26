@@ -1,12 +1,14 @@
 #' Renumber missing id
 #'
+#' `renum_miss()` will replace certain values with NA. For numeric vectors ids
+#' coded as `0` or `-99` will be considered as missing or unknown. For character
+#' vectors this is extended to include `'.'`, `'*'`, `'NA'` and whitespaces.
+#'
 #' @param id a numeric or character vector for which the missing codes will be
 #'   replaced with NA
-#' @param warn a logical indicating wheter to print a warning message with the
-#'   codes that will be considered as missing
+#' @param ... other arguments passed to specific methods
+#' @return a numeric or character vector
 #'
-#' @return a numeric of character vector where the codes for missing ids have
-#'   been replaced with NA
 #' @export renum_miss
 #' @rdname renum_miss
 #'
@@ -15,15 +17,30 @@
 #' ids <- rpois(50, 100)
 #' ids[sample.int(50, 10)] <- c(0L, -99)[sample.int(2, 10, replace = TRUE)]
 #' renum_miss(ids)
-renum_miss <- function(id, warn = TRUE) {
-  assert_that(is.numeric(id) || is.character(id))
+#'
+#' ids <- c("A", "B", ".", "D", "*", "NA", "  ", "H")
+#' renum_miss(ids)
+renum_miss <- function(id, ...) {
+  UseMethod("renum_miss", id)
+}
 
-  if(is.numeric(id)) miss <- c(0, -99)
-  if(is.character(id)) miss <- c(".", "*", " ", "NA")
+#' @rdname renum_miss
+#' @export
+renum_miss.default <- function(id, ...) {
+  stop("id must be a numeric or character vector")
+}
 
-  if (warn)
-    warning("IDs coded as; ", str_list(miss), " will be considered missing",
-            immediate. = TRUE, call. = FALSE)
+#' @rdname renum_miss
+#' @method renum_miss character
+#' @importFrom stringr str_replace_all
+#' @export
+renum_miss.character <- function(id, ...) {
+  str_replace_all(id, "\\.|\\*|\\s+|NA|0|-99", NA_character_)
+}
 
-  replace(id, id %in% miss, NA)
+#' @rdname renum_miss
+#' @method renum_miss numeric
+#' @export
+renum_miss.numeric <- function(id, ...) {
+  replace(id, id %in% c(0, -99), NA)
 }

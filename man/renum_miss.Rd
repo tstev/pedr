@@ -2,27 +2,39 @@
 % Please edit documentation in R/renum_missing.R
 \name{renum_miss}
 \alias{renum_miss}
+\alias{renum_miss.default}
+\alias{renum_miss.character}
+\alias{renum_miss.numeric}
 \title{Renumber missing id}
 \usage{
-renum_miss(id, warn = TRUE)
+renum_miss(id, ...)
+
+\method{renum_miss}{default}(id, ...)
+
+\method{renum_miss}{character}(id, ...)
+
+\method{renum_miss}{numeric}(id, ...)
 }
 \arguments{
 \item{id}{a numeric or character vector for which the missing codes will be
 replaced with NA}
 
-\item{warn}{a logical indicating wheter to print a warning message with the
-codes that will be considered as missing}
+\item{...}{other arguments passed to specific methods}
 }
 \value{
-a numeric of character vector where the codes for missing ids have
-  been replaced with NA
+a numeric or character vector
 }
 \description{
-Renumber missing id
+\code{renum_miss()} will replace certain values with NA. For numeric vectors ids
+coded as \code{0} or \code{-99} will be considered as missing or unknown. For character
+vectors this is extended to include \code{'.'}, \code{'*'}, \code{'NA'} and whitespaces.
 }
 \examples{
 set.seed(42L)
 ids <- rpois(50, 100)
 ids[sample.int(50, 10)] <- c(0L, -99)[sample.int(2, 10, replace = TRUE)]
+renum_miss(ids)
+
+ids <- c("A", "B", ".", "D", "*", "NA", "  ", "H")
 renum_miss(ids)
 }

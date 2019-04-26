@@ -2,7 +2,7 @@ Package: pedr
 Type: Package
 Title: Everything to do with pedigree functions
 Version: 0.1
-Date: 2019-04-22
+Date: 2019-04-26
 Author: Tomas Stevens
 Maintainer: Tomas Stevens <t.stevens90@gmail.com>
 Description: Collection of useful functions that deal with pedigrees.
@@ -10,3 +10,5 @@ License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.1)
 LinkingTo: Rcpp
 RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
