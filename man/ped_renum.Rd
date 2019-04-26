@@ -7,13 +7,20 @@
 ped_renum(pedigree, ...)
 }
 \arguments{
-\item{as_dt}{}
+\item{pedigree}{an object which includes the id of individual, sire and dam.}
 }
 \value{
-
+a \code{data.table} containing the original ids and the renumbered ids
 }
 \description{
-Renumber pedigree
+\code{ped_renum()} takes an \code{R} object and assumes the first three elements
+corresponds to the id of the individual, sire and dam, in that order. First,
+some assumed missing codes and recorded to NA and then all the ids are
+renumbered by adding three additional columns \code{.id}, \code{.sire} and \code{.dam}.
+}
+\details{
+It is assumed that all the sire and dam ids are present in the individual
+column. If not run \code{ped_add()} first.
 }
 \examples{
 

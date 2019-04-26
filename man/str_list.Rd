@@ -17,9 +17,9 @@ str_list(..., sep = ", ", last = " and ")
 a character string.
 }
 \description{
-`str_list()` wraps [base::paste0()] in order to turn a list of character
+\code{str_list()} wraps \code{\link[base:paste0]{base::paste0()}} in order to turn a list of character
 strings into a grammatically correct list without an
-[Oxford Comma](https://en.wikipedia.org/wiki/Serial_comma) by default.
+\href{https://en.wikipedia.org/wiki/Serial_comma}{Oxford Comma} by default.
 Sue me.
 }
 \examples{
