@@ -22,6 +22,7 @@
 #' ids <- c("A", "B", ".", "D", "*", "NA", " ", "  ", "K")
 #' frenum_miss(ids)
 #'
+#' @backref src/frenum_miss.cpp
 #' @export frenum_miss
 frenum_miss <- function(id) {
     .Call('_pedr_frenum_miss', PACKAGE = 'pedr', id)
