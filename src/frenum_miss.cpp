@@ -38,6 +38,7 @@ Vector<RTYPE> frenum_miss(const Vector<RTYPE>& id,
 //' ids <- c("A", "B", ".", "D", "*", "NA", " ", "  ", "K")
 //' frenum_miss(ids)
 //'
+//' @backref src/frenum_miss.cpp
 //' @export frenum_miss
 // [[Rcpp::export(frenum_miss)]]
 SEXP frenum_miss(SEXP id) {
